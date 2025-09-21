@@ -3,6 +3,7 @@ import './App.css';
 import StarRatingComponent from './components/StarRatingComponent';
 import MultiStepperComponent from './components/MultiStepperComponent';
 import TabComponent from './components/TabComponent/TabComponent';
+import PaginationComponent from './components/PaginationComponent/PaginationComponent';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       {/* <StarRatingComponent /> */}
       {/* <MultiStepperComponent /> */}
       {/* <TabComponent /> */}
+      <PaginationComponent />
     </div>
   );
 }
