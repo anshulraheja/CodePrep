@@ -1,0 +1,23 @@
+.input-search {
+  height: 25px;
+  width: 500px;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 5px;
+}
+.result-container {
+  max-height: 200px;
+  width: 500px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  overflow: scroll;
+  margin: 0;
+}
+.result-item {
+  display: block;
+  padding: 5px;
+}
+.result-item:hover {
+  background-color: antiquewhite;
+}
