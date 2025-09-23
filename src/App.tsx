@@ -5,6 +5,7 @@ import MultiStepperComponent from './components/MultiStepperComponent';
 import TabComponent from './components/TabComponent/TabComponent';
 import PaginationComponent from './components/PaginationComponent/PaginationComponent';
 import AutoCompleteComponent from './components/AutoCompleteComponent/AutoCompleteComponent';
+import NestesedCheckboxComponent from './components/NestedCheckboxComponent/NestedCheckboxComponent';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       {/* <MultiStepperComponent /> */}
       {/* <TabComponent /> */}
       {/* <PaginationComponent /> */}
-      <AutoCompleteComponent />
+      {/* <AutoCompleteComponent /> */}
+      <NestesedCheckboxComponent />
     </div>
   );
 }
