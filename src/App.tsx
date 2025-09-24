@@ -6,6 +6,7 @@ import TabComponent from './components/TabComponent/TabComponent';
 import PaginationComponent from './components/PaginationComponent/PaginationComponent';
 import AutoCompleteComponent from './components/AutoCompleteComponent/AutoCompleteComponent';
 import NestesedCheckboxComponent from './components/NestedCheckboxComponent/NestedCheckboxComponent';
+import TodoComponent from './components/TodoComponent/TodoComponent';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       {/* <TabComponent /> */}
       {/* <PaginationComponent /> */}
       {/* <AutoCompleteComponent /> */}
-      <NestesedCheckboxComponent />
+      {/* <NestesedCheckboxComponent /> */}
+      <TodoComponent />
     </div>
   );
 }
