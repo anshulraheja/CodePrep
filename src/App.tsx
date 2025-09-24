@@ -7,6 +7,7 @@ import PaginationComponent from './components/PaginationComponent/PaginationComp
 import AutoCompleteComponent from './components/AutoCompleteComponent/AutoCompleteComponent';
 import NestesedCheckboxComponent from './components/NestedCheckboxComponent/NestedCheckboxComponent';
 import TodoComponent from './components/TodoComponent/TodoComponent';
+import FetchingMultipleAPIs from './components/FetchingAPI/FetchingMultipleAPIs';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
       {/* <PaginationComponent /> */}
       {/* <AutoCompleteComponent /> */}
       {/* <NestesedCheckboxComponent /> */}
-      <TodoComponent />
+      {/* <TodoComponent /> */}
+      <FetchingMultipleAPIs />
     </div>
   );
 }
