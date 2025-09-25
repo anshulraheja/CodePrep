@@ -8,6 +8,10 @@ import AutoCompleteComponent from './components/AutoCompleteComponent/AutoComple
 import NestesedCheckboxComponent from './components/NestedCheckboxComponent/NestedCheckboxComponent';
 import TodoComponent from './components/TodoComponent/TodoComponent';
 import FetchingMultipleAPIs from './components/FetchingAPI/FetchingMultipleAPIs';
+import Home from './components/Ecommerce/Home';
+import { Outlet } from 'react-router-dom';
+import ReactionComponent from './components/ReactionComponent/ReactionComponent';
+import ThemeComponent from './components/Theme/ThemeComponent';
 
 function App() {
   return (
@@ -19,7 +23,16 @@ function App() {
       {/* <AutoCompleteComponent /> */}
       {/* <NestesedCheckboxComponent /> */}
       {/* <TodoComponent /> */}
-      <FetchingMultipleAPIs />
+      {/* <FetchingMultipleAPIs /> */}
+      {/* Layout: navbar, footer, etc. */}
+      {/* <header>
+        <h1>Ecommerce Demo</h1>
+      </header> */}
+
+      {/* This is where child routes will render */}
+      {/* <Outlet /> */}
+      {/* <ReactionComponent /> */}
+      <ThemeComponent />
     </div>
   );
 }
