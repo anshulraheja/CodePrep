@@ -1,0 +1,7 @@
+{
+  "coord": { "lon": -74.0354, "lat": 40.7278 },
+  "weather": [{ "id": 800, "main": "Clear", "description": "clear sky", "icon": "01d" }],
+  "main": { "temp": 74.3, "feels_like": 74.0, "humidity": 60 },
+  "wind": { "speed": 5 },
+  "name": "Sample Place"
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Checkboxes.css';
+
 export default function Checkboxes({ data, checked, setChecked }) {
   const handleChange = (isChecked, node) => {
     setChecked((prev) => {
@@ -16,9 +17,24 @@ export default function Checkboxes({ data, checked, setChecked }) {
 
       // if all children are checked, mark parent as checked
 
-      const verifyParent = (node) => {};
+      const verifyParent = (node) => {
+        if (!node.children) return newState[node.id] || false;
 
-      verifyParent(node);
+        const allChildrenChecked = node.children.every((child) => verifyParent(child));
+
+        newState[node.id] = allChildrenChecked;
+        return allChildrenChecked;
+      };
+
+      data.forEach((node) => verifyParent(node));
+
+      // for (let i = node.length - 1; i >= 0; i--) {
+      //   const parentId = node[i];
+      //   const parentNode = findNodeById(data, parentId);
+      //   const allChildrenChecked = parentNode.children.every((child) => newState[child.id]);
+      //   newState[parentId] = allChildrenChecked;
+      // }
+
       return newState;
     });
   };

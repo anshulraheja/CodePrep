@@ -12,6 +12,10 @@ import Home from './components/Ecommerce/Home';
 import { Outlet } from 'react-router-dom';
 import ReactionComponent from './components/ReactionComponent/ReactionComponent';
 import ThemeComponent from './components/Theme/ThemeComponent';
+import InfiniteScroll from './components/InfiniteScroll/InfiniteScroll';
+import FileExplorer from './components/FileExplorer/FileExplorer';
+import Countdown from './components/Countdown/Countdown';
+import ForecastPage from './components/WeatherApp/ForecastPage';
 
 function App() {
   return (
@@ -32,7 +36,11 @@ function App() {
       {/* This is where child routes will render */}
       {/* <Outlet /> */}
       {/* <ReactionComponent /> */}
-      <ThemeComponent />
+      {/* <ThemeComponent /> */}
+      {/* <InfiniteScroll /> */}
+      {/* <FileExplorer /> */}
+      {/* <Countdown /> */}
+      <ForecastPage />
     </div>
   );
 }

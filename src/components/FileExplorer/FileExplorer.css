@@ -1,0 +1,28 @@
+.file-explorer {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.tree-node {
+  margin-left: 16px;
+}
+
+.tree-label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.tree-label.file {
+  cursor: default;
+}
+
+.tree-children {
+  margin-left: 20px;
+  border-left: 1px dashed #aaa;
+  padding-left: 8px;
+}
+
+.empty {
+  color: #888;
+  font-style: italic;
+}
