@@ -16,6 +16,8 @@ import InfiniteScroll from './components/InfiniteScroll/InfiniteScroll';
 import FileExplorer from './components/FileExplorer/FileExplorer';
 import Countdown from './components/Countdown/Countdown';
 import ForecastPage from './components/WeatherApp/ForecastPage';
+import Stopwatch from './components/Stopwatch/Stopwatch';
+import Stopwatch2 from './components/Stopwatch/Stopwatch2';
 
 function App() {
   return (
@@ -40,7 +42,8 @@ function App() {
       {/* <InfiniteScroll /> */}
       {/* <FileExplorer /> */}
       {/* <Countdown /> */}
-      <ForecastPage />
+      {/* <ForecastPage /> */}
+      <Stopwatch2 />
     </div>
   );
 }
