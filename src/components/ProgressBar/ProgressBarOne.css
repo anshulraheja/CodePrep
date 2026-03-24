@@ -1,0 +1,13 @@
+body {
+  font-family: sans-serif;
+}
+.progress-bar-container {
+  margin: 4px;
+  height: 12px;
+  border-radius: 2px;
+  background: rgb(224, 220, 220);
+}
+.progress-bar-fill {
+  background-color: green;
+  height: 12px;
+}
