@@ -18,6 +18,7 @@ const InfiniteScroll = () => {
       const data = await res.json();
 
       setCharacters((prev) => [...prev, ...data.results]);
+      console.log(data.info.next);
       setNextUrl(data.info.next); // cursor for next page
     } catch (err) {
       console.error('Error fetching characters:', err);

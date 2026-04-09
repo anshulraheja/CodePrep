@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import "./ProgressBarOne.css"
-export default function App() {
+export default function ProgressBarOne() {
   const [progress, setProgress] = useState(10);
 
   useEffect(() => {

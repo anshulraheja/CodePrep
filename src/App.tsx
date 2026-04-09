@@ -18,7 +18,8 @@ import Countdown from './components/Countdown/Countdown';
 import ForecastPage from './components/WeatherApp/ForecastPage';
 import Stopwatch from './components/Stopwatch/Stopwatch';
 import Stopwatch2 from './components/Stopwatch/Stopwatch2';
-
+import ProgressBarOne from "./components/ProgressBar/ProgressBarOne";
+import MenuComponent from "./components/MenuComponent/MenuComponent";
 function App() {
   return (
     <div className="App">
@@ -43,7 +44,9 @@ function App() {
       {/* <FileExplorer /> */}
       {/* <Countdown /> */}
       {/* <ForecastPage /> */}
-      <Stopwatch2 />
+      {/* <Stopwatch2 /> */}
+      {/* <ProgressBarOne/> */}
+      <MenuComponent/>
     </div>
   );
 }
