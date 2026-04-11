@@ -20,6 +20,7 @@ import Stopwatch from './components/Stopwatch/Stopwatch';
 import Stopwatch2 from './components/Stopwatch/Stopwatch2';
 import ProgressBarOne from "./components/ProgressBar/ProgressBarOne";
 import MenuComponent from "./components/MenuComponent/MenuComponent";
+import CartApp from "./components/CartApp";
 function App() {
   return (
     <div className="App">
@@ -46,7 +47,8 @@ function App() {
       {/* <ForecastPage /> */}
       {/* <Stopwatch2 /> */}
       {/* <ProgressBarOne/> */}
-      <MenuComponent/>
+      {/* <MenuComponent/> */}
+      <CartApp/>
     </div>
   );
 }

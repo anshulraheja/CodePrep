@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
-import { cls } from "../../utils";
-import styles from "./CheckoutButton.module.css";
+// import { cls } from "../../utils";
+import styles from "./Cart.module.css";
 
 // Doesn't extend button props, even though it takes rest props
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>& {
@@ -16,7 +16,7 @@ export function CheckoutButton({
   ...rest
 }: ButtonProps) {
   return (
-    <button className={cls(className, styles.root)} {...rest}>
+    <button className={`${className} ${styles.root}`} {...rest}>
       {children}
       <span>$ {total}</span>
     </button>

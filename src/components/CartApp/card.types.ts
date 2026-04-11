@@ -1,4 +1,4 @@
-import { MenuItem } from "./api/menu.ts";
+import { MenuItem } from "./api/menu";
 
 /**
  * TODO: Modify CartItem as needed

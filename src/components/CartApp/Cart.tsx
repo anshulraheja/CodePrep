@@ -1,16 +1,17 @@
 import { useMemo, useRef, useState } from "react";
-import { ReactComponent as CartIcon } from "../../assets/cart.svg";
+// import { ReactComponent as CartIcon } from "../../assets/cart.svg";
 import styles from "./Cart.module.css";
-import { cls } from "../../utils";
-import { useOnClickOutside } from "../../hooks/use-onclick-outside";
-import { useCart } from "../../contexts/CartContext";
-import { CheckoutButton } from "../checkout-button/CheckoutButton";
-import { MenuItem } from "../../api/menu";
-import { ReactComponent as MinusIcon } from "../../assets/minus.svg";
-import { ReactComponent as PlusIcon } from "../../assets/plus.svg";
-import { ReactComponent as TrashIcon } from "../../assets/trash.svg";
+// import { cls } from "../../utils";
+// import { useOnClickOutside } from "../../hooks/use-onclick-outside";
+import { useCart } from "./context/CartContext";
+import { CheckoutButton } from "./CheckoutButton";
+import { MenuItem } from "./api/menu";
+import { CartItem } from "./card.types";
+// import { ReactComponent as MinusIcon } from "../../assets/minus.svg";
+// import { ReactComponent as PlusIcon } from "../../assets/plus.svg";
+// import { ReactComponent as TrashIcon } from "../../assets/trash.svg";
 
-type CombinedItems = Record<string, MenuItem & { quantity: number }>;
+type CombinedItems = Record<string, CartItem>;
 
 export const Cart = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,31 +24,41 @@ export const Cart = () => {
    *       Refactor based on new CartItem structure.
    */
   const { total, combinedItems } = useMemo(() => {
-    let total = 0;
     const combined = items.reduce<CombinedItems>((acc, item) => {
-      total += item.price;
+      const existing = acc[item.name];
+      if (existing) {
+        return {
+          ...acc,
+          [item.name]: {
+            ...existing,
+            quantity: existing.quantity + item.quantity,
+          },
+        };
+      }
+
       return {
         ...acc,
-        [item.name]: acc[item.name]
-          ? {
-              ...item,
-              quantity: acc[item.name].quantity + 1,
-            }
-          : { ...item, quantity: 1 },
+        [item.name]: item,
       };
-    }, {});
+    }, {} as CombinedItems);
+
+    const total = Object.values(combined).reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
     return {
       total,
       combinedItems: Object.values(combined),
     };
-  }, [items.length]);
+  }, [items]);
 
-  useOnClickOutside({
-    ref: flyoutRef,
-    handler: () => setIsOpen(false),
-    captureClicks: false,
-    clickCaptureIgnore: [triggerRef],
-  });
+  // useOnClickOutside({
+  //   ref: flyoutRef,
+  //   handler: () => setIsOpen(false),
+  //   captureClicks: false,
+  //   clickCaptureIgnore: [triggerRef],
+  // });
 
   return (
     <div style={{ position: "relative" }}>
@@ -57,18 +68,18 @@ export const Cart = () => {
         onClick={() => setIsOpen((state) => !state)}
         ref={triggerRef}
       >
-        <CartIcon />
+        Cart
         {items.length}
       </button>
       <div
         ref={flyoutRef}
-        className={cls(styles.flyout, !isOpen && styles.closed)}
+        className={`${styles.flyout} ${!isOpen ? styles.closed : ''}`}
       >
         {!!combinedItems.length ? (
           <>
             <ul className={styles.list}>
               {combinedItems.map((item) => (
-                <CartItem
+                <Item
                   key={item.name}
                   item={item}
                   quantity={item.quantity}
@@ -93,10 +104,10 @@ export const Cart = () => {
 };
 
 type CartItemProps = {
-  item: MenuItem;
+  item: CartItem;
   quantity: number;
 };
-const CartItem = ({ item, quantity }: CartItemProps) => {
+const Item = ({ item, quantity }: CartItemProps) => {
   const { addItem, removeItem } = useCart();
 
   if (!quantity) {
@@ -105,26 +116,44 @@ const CartItem = ({ item, quantity }: CartItemProps) => {
   return (
     <li>
       <div className={styles.leftColumn}>
-        <img className={styles.actionImg} src={item.imgUrl} alt={item.name} />
+        {item.imgUrl ? (
+          <img className={styles.actionImg} src={item.imgUrl} alt={item.name} />
+        ) : (
+          <div
+            style={{
+              width: "4em",
+              height: "4em",
+              borderRadius: 12,
+              background: "#f2f2f2",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#777",
+              fontSize: 12,
+            }}
+          >
+            No image
+          </div>
+        )}
         <div className={styles.description}>
           <h4>{item.name}</h4>
           <h5>{item.description}</h5>
-          <h4 className={styles.price}>${item.price * quantity}</h4>
+          <h4 className={styles.price}>${(item.price * quantity).toFixed(2)}</h4>
         </div>
       </div>
       <div className={styles.actions}>
         {quantity <= 1 ? (
           <button className={styles.action} onClick={() => removeItem(item)}>
-            <TrashIcon />
+            Remove
           </button>
         ) : (
           <button className={styles.action} onClick={() => removeItem(item)}>
-            <MinusIcon />
+            -
           </button>
         )}
         <p className={styles.quantity}>{quantity}</p>
         <button className={styles.action} onClick={() => addItem(item)}>
-          <PlusIcon />
+          +
         </button>
       </div>
     </li>

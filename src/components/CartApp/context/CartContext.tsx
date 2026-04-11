@@ -32,47 +32,32 @@ export const CartProvider = ({ children }: CartProviderProps) => {
    *       Add a quantity to increment when addItem is called with an existing item.
    */
   const addItem = useCallback((item: CartItem) => {
-
-      /**
-      array of objects
-      item.id
-      check if id exist --> if yes, we will increase the count
-
-      [
-        {id: 1} , {id: 2} , 
-      ]
-      */
-
-      let arr = [...items];
-      for(let i=0; i<arr.length; i++){
-          if(item.id == arr[i].id){
-              // arr[i].quantity++;
-              arr = [...arr, {...item, quantity: arr[i].quantity + 1}];
-          } else {
-              arr = [...arr, {...item, quantity:1}];
-          }
+    setItems((prev) => {
+      const existingIndex = prev.findIndex((i) => i.id === item.id);
+      if (existingIndex > -1) {
+        const newItems = [...prev];
+        newItems[existingIndex] = { ...newItems[existingIndex], quantity: newItems[existingIndex].quantity + 1 };
+        return newItems;
+      } else {
+        return [...prev, { ...item, quantity: 1 }];
       }
-
-      console.log(arr);
-
-      return setItems(arr);
-
-      
-      
-    // return setItems((items) => [...items, item]);
+    });
   }, []);
 
   /**
    * TODO: Refactor removeItem to decrement quantity of the item, removing it from the cart only when quantity reaches zero.
    */
   const removeItem = useCallback((item: CartItem) => {
-    return setItems((prev) => {
-      // using find last index keeps the array in order when things are removed
-      const index = prev.findLastIndex((i: CartItem) => i.name === item.name);
-      if (index > -1) {
-        const first = prev.slice(0, index);
-        const last = prev.slice(index + 1, prev.length);
-        return [...first, ...last];
+    setItems((prev) => {
+      const existingIndex = prev.findIndex((i) => i.id === item.id);
+      if (existingIndex > -1) {
+        const newItems = [...prev];
+        if (newItems[existingIndex].quantity > 1) {
+          newItems[existingIndex] = { ...newItems[existingIndex], quantity: newItems[existingIndex].quantity - 1 };
+        } else {
+          newItems.splice(existingIndex, 1);
+        }
+        return newItems;
       }
       return prev;
     });
@@ -89,7 +74,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       .finally(() => {
         setSubmitting(false);
       });
-  }, [items]);
+  }, [items, addOrder]);
 
   return (
     <CartContext.Provider

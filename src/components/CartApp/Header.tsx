@@ -1,5 +1,5 @@
-import { Cart } from "../cart";
-import styles from "./Header.module.css";
+import { Cart } from "./Cart";
+import styles from "./Cart.module.css";
 import { useLocation, Link } from 'react-router-dom'
 
 type HeaderProps = {};

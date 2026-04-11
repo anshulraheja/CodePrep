@@ -1,20 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { Order, createOrder, getOrders } from "../api/order";
+import { createOrder, getOrders } from "../api/cart";
 
-type ContextValue = {
-  orders: Order[];
-  addOrder: (items: Order["items"]) => Promise<Order>;
-  removeOrder: (id: string) => Promise<boolean>;
-};
-export const OrderContext = createContext<ContextValue>(
-  undefined as unknown as ContextValue
-);
+const OrderContext = createContext(undefined);
 
-type Props = {
-  children: React.ReactNode;
-};
-export const OrdersProvider = ({ children }: Props) => {
-  const [orders, setOrders] = useState<Order[]>([]);
+export const OrdersProvider = ({ children }) => {
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     getOrders().then((res) => {
@@ -22,7 +12,7 @@ export const OrdersProvider = ({ children }: Props) => {
     });
   }, []);
 
-  const addOrder: ContextValue["addOrder"] = (items) => {
+  const addOrder = (items) => {
     console.log({ items });
     return createOrder(items).then((response) => {
       console.log({ response });
@@ -31,12 +21,12 @@ export const OrdersProvider = ({ children }: Props) => {
     });
   };
 
-  const removeOrder: ContextValue["removeOrder"] = (id) => {
+  const removeOrder = (id) => {
     setOrders((prev) => prev.filter((order) => order.id !== id));
     return Promise.resolve(true);
   };
 
-  const value: ContextValue = useMemo(
+  const value = useMemo(
     () => ({
       orders,
       addOrder,

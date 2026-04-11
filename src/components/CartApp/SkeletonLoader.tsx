@@ -1,4 +1,4 @@
-import styles from "./SkeletonLoader.module.css";
+import styles from "./Cart.module.css";
 import { CSSProperties, ElementType } from "react";
 
 export type SkeletonLoaderProps = {
@@ -31,14 +31,4 @@ export const SkeletonLoader = ({
       {...rest}
     />
   );
-};
-import styles from "./SkeletonLoader.module.css";
-import { CSSProperties, ElementType } from "react";
-
-export type SkeletonLoaderProps = {
-  width?: string | number;
-  height?: string | number;
-  margin?: string | number;
-  as?: ElementType;
-  style?: Partial<CSSProperties>;
 };

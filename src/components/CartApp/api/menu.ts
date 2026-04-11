@@ -1,7 +1,7 @@
-import burger from "../assets/images/burger.jpeg";
-import chickenTenders from "../assets/images/chicken_tenders.jpeg";
-import biscuitsAndGravy from "../assets/images/biscuits_and_gravy.jpeg";
-import chickenFriedSteak from "../assets/images/chicken_fried_steak.jpeg";
+// import burger from "../assets/images/burger.jpeg";
+// import chickenTenders from "../assets/images/chicken_tenders.jpeg";
+// import biscuitsAndGravy from "../assets/images/biscuits_and_gravy.jpeg";
+// import chickenFriedSteak from "../assets/images/chicken_fried_steak.jpeg";
 
 export type MenuItem = {
   id: string;
@@ -28,7 +28,7 @@ export const getMenuItems = () => {
           description: "Biscuits smothered in gravy",
           price: 5.99,
           tags: ["breakfast"],
-          imgUrl: biscuitsAndGravy,
+          // imgUrl: biscuitsAndGravy,
         },
         {
           id: "2",
@@ -36,7 +36,7 @@ export const getMenuItems = () => {
           description: "Chicken fried steak with gravy",
           price: 8.99,
           tags: ["breakfast", "lunch"],
-          imgUrl: chickenFriedSteak,
+          // imgUrl: chickenFriedSteak,
         },
         {
           id: "3",
@@ -44,7 +44,7 @@ export const getMenuItems = () => {
           description: "Chicken tenders with fries",
           price: 7.99,
           tags: ["lunch", "dinner"],
-          imgUrl: chickenTenders,
+          // imgUrl: chickenTenders,
         },
         {
           id: "4",
@@ -52,7 +52,7 @@ export const getMenuItems = () => {
           description: "Hamburger with fries",
           price: 6.99,
           tags: ["lunch", "dinner"],
-          imgUrl: burger,
+          // imgUrl: burger,
         },
       ]);
     }, generateDelay(2000, 3000));
