@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import {useEffect, useState} from 'react';
 import StarRatingComponent from './components/StarRatingComponent';
 import MultiStepperComponent from './components/MultiStepperComponent';
 import TabComponent from './components/TabComponent/TabComponent';
@@ -22,12 +23,22 @@ import ProgressBarOne from "./components/ProgressBar/ProgressBarOne";
 import MenuComponent from "./components/MenuComponent/MenuComponent";
 import CartApp from "./components/CartApp";
 function App() {
+  const [count, setCount ] = useState(0)
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log('interval', count);
+  //     setCount(prev => prev + 1);
+  //   }, 1000);
+
+  //   return () => clearInterval(interval)
+  // }, [])
   return (
     <div className="App">
+      {/* <h1>{count}</h1> */}
       {/* <StarRatingComponent /> */}
       {/* <MultiStepperComponent /> */}
       {/* <TabComponent /> */}
-      {/* <PaginationComponent /> */}
+      <PaginationComponent />
       {/* <AutoCompleteComponent /> */}
       {/* <NestesedCheckboxComponent /> */}
       {/* <TodoComponent /> */}
@@ -48,7 +59,7 @@ function App() {
       {/* <Stopwatch2 /> */}
       {/* <ProgressBarOne/> */}
       {/* <MenuComponent/> */}
-      <CartApp/>
+      {/* <CartApp/> */}
     </div>
   );
 }

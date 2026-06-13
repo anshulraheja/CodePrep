@@ -3,10 +3,19 @@ import { useEffect, useState } from 'react';
 export default function useDebounce(value, delay = 300) {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => setDebouncedValue(value), delay);
+  console.log('useDebounce render', { value, debouncedValue, delay });
 
-    return () => clearTimeout(timeoutId); // cleanup
+  useEffect(() => {
+    console.log('useDebounce effect start', { value, delay });
+    const timeoutId = setTimeout(() => {
+      console.log('useDebounce timeout fired', { value });
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      console.log('useDebounce cleanup', { value });
+      clearTimeout(timeoutId);
+    };
   }, [value, delay]);
 
   return debouncedValue;

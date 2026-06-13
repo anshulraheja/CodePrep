@@ -3,7 +3,7 @@ import { useReaction } from './ReactionContext';
 const ReactionButton = ({ reactionButtons }) => {
   const { addReaction } = useReaction();
 
-  console.log('Rendering ReactionButton');
+  // console.log('Rendering ReactionButton');
   return (
     <div>
       {reactionButtons.map((button) => (

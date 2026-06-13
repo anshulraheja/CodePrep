@@ -3,7 +3,7 @@ import { useReaction } from './ReactionContext';
 const ReactionDisplay = () => {
   const { reactions } = useReaction();
 
-  console.log('Rendering ReactionDisplay');
+  // console.log('Rendering ReactionDisplay');
   return (
     <div>
       {reactions.map((r) => (

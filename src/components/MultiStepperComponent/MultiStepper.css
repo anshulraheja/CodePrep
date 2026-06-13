@@ -1,0 +1,17 @@
+.step-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: 10px 0;
+  background-color: rgb(48, 78, 86);
+}
+.btn {
+  border: 1px solid grey;
+  background-color: rgb(214, 237, 237);
+  height: 24px;
+  width: 100px;
+}
+.selected-btn {
+  background-color: rgb(48, 48, 154);
+  color: white;
+}

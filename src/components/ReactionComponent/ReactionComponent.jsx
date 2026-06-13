@@ -12,7 +12,7 @@ const ReactionComponent = () => {
     { id: 4, icon: '😢' },
     { id: 5, icon: '😡' },
   ];
-  console.log('Rendering ReactionComponent');
+  // console.log('Rendering ReactionComponent');
   return (
     <div>
       <h1>Reaction Component</h1>

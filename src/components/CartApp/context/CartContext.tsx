@@ -64,7 +64,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   }, []);
 
   const submit = useCallback(() => {
-    console.log("submitting order");
+    // console.log("submitting order");
     setSubmitting(true);
     addOrder(items)
       .then((order) => {

@@ -2,12 +2,12 @@ import { useCallback, useContext, useReducer, createContext } from 'react';
 
 const CartContext = createContext(null);
 
-const initialCartState = {
+export const initialCartState = {
   items: [],
   totalAmount: 0,
 };
 
-function cartReducer(state, action) {
+export function cartReducer(state, action) {
   switch (action.type) {
     case 'ADD_ITEM': {
       const existingItemIndex = state.items.findIndex((item) => item.id === action.payload.id);
@@ -25,8 +25,33 @@ function cartReducer(state, action) {
       const updatedTotalAmount = state.totalAmount + action.payload.price;
       return { items: updatedItems, totalAmount: updatedTotalAmount };
     }
+    case 'REMOVE_ITEM': {
+      const existingItemIndex = state.items.findIndex((item) => item.id === action.payload.id);
+
+      if (existingItemIndex < 0) {
+        return state;
+      }
+
+      const existingItem = state.items[existingItemIndex];
+      let updatedItems;
+
+      if (existingItem.quantity === 1) {
+        updatedItems = state.items.filter((item) => item.id !== existingItem.id);
+      } else {
+        updatedItems = [...state.items];
+        updatedItems[existingItemIndex] = {
+          ...existingItem,
+          quantity: existingItem.quantity - 1,
+        };
+      }
+
+      return {
+        items: updatedItems,
+        totalAmount: Math.max(0, state.totalAmount - existingItem.price),
+      };
+    }
     case 'CLEAR_CART':
-      return initialCartState;
+      return { ...initialCartState, items: [] };
     default:
       return state;
   }
@@ -39,12 +64,16 @@ export function CartProvider({ children }) {
     dispatch({ type: 'ADD_ITEM', payload: product });
   }, []);
 
+  const removeFromCart = useCallback((product) => {
+    dispatch({ type: 'REMOVE_ITEM', payload: product });
+  }, []);
+
   const clearCart = useCallback(() => {
     dispatch({ type: 'CLEAR_CART' });
   }, []);
 
-  console.log(state);
-  const value = { ...state, addToCart, clearCart };
+  // console.log(state);
+  const value = { ...state, addToCart, removeFromCart, clearCart };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

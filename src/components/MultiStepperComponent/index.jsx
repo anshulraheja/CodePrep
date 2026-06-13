@@ -1,26 +1,60 @@
-import { useState } from 'react';
 import MultiStepper from './MultiStepper';
 
-function Step1() {
-  return <h1>Step 1</h1>;
-}
-function Step2() {
-  return <h1>Step 1</h1>;
-}
-function Step3() {
-  return <h1>Step 1</h1>;
-}
+// Multi Step Component Defination
+const NameComponent = () => {
+    return (
+        <div>
+            <label htmlFor="name">Enter Name</label>
+            <input type="text" id="name" />
+        </div>
+    );
+};
 
-function MultiStepperComponent() {
-  const [defaultActive, setDefaultActive] = useState(2);
-  return (
-    <MultiStepper
-      steps={[<Step1 />, <Step2 />, <Step3 />]}
-      defaultActive={defaultActive}
-      unmountOnHide={false}
-      setDefaultActive={setDefaultActive}
-    />
-  );
-}
+const GenderComponent = () => {
+    return (
+        <div>
+            <h4>Select Gender</h4>
+            <input type="radio" id="male" name="gender" value="male" />
+            <label htmlFor="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female" />
+            <label htmlFor="female">Female</label>
+        </div>
+    );
+};
+
+const TechComponent = () => {
+    return (
+        <div>
+            <h4>Select the tech you are proficient in:-</h4>
+            <input type="checkbox" name="react" value="react" id="react" />
+            <label htmlFor="react">React</label>
+            <input type="checkbox" name="js" value="js" id="js" />
+            <label htmlFor="js">JavaScript</label>
+        </div>
+    );
+};
+
+const DEFAULT_STEPS = [
+    {
+        id: 'name',
+        title: 'Name',
+        component: NameComponent,
+    },
+    {
+        id: 'gender',
+        title: 'Gender',
+        component: GenderComponent,
+    },
+    {
+        id: 'tech',
+        title: 'Tech',
+        component: TechComponent,
+    },
+];
+
+
+const MultiStepperComponent = () => {
+    return <MultiStepper steps={DEFAULT_STEPS}/>;
+};
 
 export default MultiStepperComponent;
